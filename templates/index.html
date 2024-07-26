@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR - Convert Image to Text</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>OCR - Convert Image to Text</h1>
+        {% if text %}
+            <div class="result-section">
+                <h2>Extracted Text:</h2>
+                <div class="text-container">
+                    <textarea id="extractedText" readonly>{{ text }}</textarea>
+                </div>
+                <button onclick="copyText()" class="copy-button"><i class="fas fa-copy"></i> Copy</button>
+                <h2>Uploaded Image:</h2>
+                <div class="image-container">
+                    <img src="{{ image_path }}" alt="Uploaded Image">
+                </div>
+                <form method="get" action="{{ url_for('index') }}">
+                    <button type="submit" class="back-button">Upload Another Image</button>
+                </form>
+            </div>
+        {% elif error %}
+            <div class="error-section">
+                <p class="error">{{ error }}</p>
+                <form method="get" action="{{ url_for('index') }}">
+                    <button type="submit" class="back-button">Try Again</button>
+                </form>
+            </div>
+        {% else %}
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" accept="image/*" class="browse-button" required>
+                <button type="submit" class="upload-button">Upload and Extract Text</button>
+            </form>
+        {% endif %}
+    </div>
+    <script>
+        function copyText() {
+            var textArea = document.getElementById("extractedText");
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand("copy");
+            alert("Text copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
