@@ -2,6 +2,8 @@
 
 "OCR - Convert Image to Text" is a powerful web application that leverages the capabilities of Optical Character Recognition (OCR) to extract text from images. Built using Flask, and PaddleOCR, this tool provides an intuitive and efficient solution for converting image content into editable text.
 
+https://github.com/user-attachments/assets/5ccd7351-d0b8-4ac9-b023-27227b287f20
+
 ## Features
 
 - **Accurate Text Extraction**: Utilizes PaddleOCR for high-precision text recognition.
